@@ -1,3 +1,6 @@
+import {response} from "./response";
+
+
 // Step 1: Age verification function
 const checkAge = (age: number) => {
     if (age < 0 || age > 120 || !Number.isInteger(age)) {
@@ -335,3 +338,59 @@ const printAverages = (students: Student[]): void => {
 console.log("STUDENT AVERAGES:")
 console.log("-------------------")
 printAverages(students);
+
+
+console.log("-------------------")
+
+// --------------------------------------------------
+
+// BONUS:
+
+// Copy the response from the Rick&Morty API with the characters into a variable.
+//
+//     Write a function that takes a list of Rick&Morty characters and returns a list of only the living humans.
+//
+//     Write another function that takes a list of Rick&Morty characters and returns a list (of strings) with the names of the characters.
+//
+//     Write another function that takes a list of Rick&Morty characters and returns a list of special objects. The objects should be structured as follows:
+//
+//
+// {
+//     "name": "some-name",
+//     "origin": "name-of-origin",
+// }
+
+
+const apiResponse = response;
+
+
+// Function 1: Get a list of only the living humans
+const getLivingHumans = (characters) => {
+    return characters.filter(character => character.status === "Alive" && character.species === "Human");
+};
+
+// Function 2: Get a list of character names (strings)
+const getCharacterNames = (characters) => {
+    return characters.map(character => character.name);
+};
+
+// Function 3: Get a list of special objects with name and origin
+const getSpecialObjects = (characters) => {
+    return characters.map(character => ({
+        name: character.name,
+        origin: character.origin.name,
+    }));
+};
+
+// Example Usage
+const livingHumans = getLivingHumans(apiResponse);
+console.log("Living Humans:");
+console.log(livingHumans);
+
+const characterNames = getCharacterNames(apiResponse);
+console.log("Character Names:");
+console.log(characterNames);
+
+const specialObjects = getSpecialObjects(apiResponse);
+console.log("Special Objects:");
+console.log(specialObjects);
